@@ -30,6 +30,24 @@
     .metric { font-size: 110%; }
     .muted { opacity: 0.85; }
     .media-caption { font-size: 105%; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .data-collection-carousel img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .data-collection-carousel .slider {
+      min-height: 160px;
+    }
+    .data-collection-carousel .slider-item {
+      display: flex;
+      align-items: center;
+    }
+    .data-collection-carousel .item {
+      padding: 0 .35rem;
+    }
   </style>
 </head>
 
@@ -120,7 +138,7 @@
 <section class="section" id="overview">
   <div class="container is-max-desktop">
       
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered has-text-centered reveal">
       <div class="column">
         <h2 class="title is-3 section-title">Overview</h2>
         <p class="subtitle is-5 muted" style="margin-top: .25rem;">
@@ -131,7 +149,7 @@
 
     <div class="columns">
       <!-- Problem -->
-      <div class="column">
+      <div class="column reveal" data-delay="0">
         <div class="content">
           <h3 class="title is-5">Problem</h3>
           <p style="font-size: 120%;">
@@ -143,7 +161,7 @@
       </div>
 
       <!-- Challenge -->
-      <div class="column">
+      <div class="column reveal" data-delay="300">
         <div class="content">
           <h3 class="title is-5">Challenge</h3>
           <p style="font-size: 120%;">
@@ -159,7 +177,7 @@
       </div>
 
       <!-- Solution -->
-      <div class="column">
+      <div class="column reveal" data-delay="600">
         <div class="content">
           <h3 class="title is-5">Our Solution</h3>
           <p style="font-size: 120%;">
@@ -192,9 +210,9 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column">
-        <h2 class="title is-3 section-title has-text-centered">Methodology Overview</h2>
+        <h2 class="title is-3 section-title has-text-centered reveal">Methodology Overview</h2>
 
-        <div class="content" style="font-size: 125%;">
+        <div class="content reveal" style="font-size: 125%;">
           <ol>
             <li><b>Mapping</b>: build a consistent 3D map with GLIM SLAM / Photogrammetry.</li>
             <li><b>Segmentation</b>: segment Tree-of-Heaven candidates from RGB images (per-frame predictions).</li>
@@ -208,16 +226,16 @@
         </div>
 
         <div class="columns" style="margin-top: 1.25rem;">
-        <div class="column">
+        <div class="column reveal" data-delay="0">
             <img src="assets/images/gascola_ucm.png" alt="Mapping" style="width:100%; border-radius: 12px;">
             <p class="muted" style="margin-top:.4rem;"><b>Mapping:</b> incremental point cloud build.</p>
           </div>
-          <div class="column">
+          <div class="column reveal" data-delay="200">
             <img src="assets/images/gascola_detection4.png" alt="Segmentation" style="width:105%; border-radius: 12px;">
             <p class="muted" style="margin-top:.4rem;"><b>Segmentation:</b> overlay predictions on video frames.</p>
           </div>
           
-          <div class="column">
+          <div class="column reveal" data-delay="400">
             <img src="assets/images/gascola_heatmap.png" alt="GeoTIFF" style="width:86%; border-radius: 12px;">
             <p class="muted" style="margin-top:.4rem;"><b>Grounding:</b> likelihood heatmap overlaid over 3D map(dark spots correspond to Tree-of-Heaven detections).</p>
           </div>
@@ -233,18 +251,18 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3 section-title">Results</h2>
-        <div class="content has-text-justified" style="font-size: 125%;">
+        <h2 class="title is-3 section-title reveal">Results</h2>
+        <div class="content has-text-justified reveal" style="font-size: 125%;">
           
 
           <div class="content" style="margin-top: 1rem;">
             <h3 class="title is-5">Gascola</h3>
             <div class="columns is-mobile">
-              <div class="column">
+              <div class="column reveal" data-delay="0">
                 <img src="assets/images/gascola_hits.png" alt="Gascola heatmap" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Heatmap on 3D point cloud</p>
               </div>
-              <div class="column">
+              <div class="column reveal" data-delay="200">
                 <img src="assets/images/gascola_tif.png" alt="Gascola GeoTIFF overlay" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">GeoTIFF overlay on Google Satellite view</p>
               </div>
@@ -254,11 +272,11 @@
           <div class="content" style="margin-top: 1rem;">
             <h3 class="title is-5">Bike Trail</h3>
             <div class="columns is-mobile">
-              <div class="column">
+              <div class="column reveal" data-delay="0">
                 <img src="assets/images/biketrail_heatmap.png" alt="Bike Trail heatmap" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Heatmap on 3D point cloud</p>
               </div>
-              <div class="column">
+              <div class="column reveal" data-delay="200">
                 <img src="assets/images/biketrail_tif.png" alt="Bike Trail GeoTIFF overlay" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">GeoTIFF overlay (zoomed in) on Google Satellite view</p>
               </div>
@@ -275,13 +293,15 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column">
-        <h2 class="title is-3 section-title has-text-centered">Datasets</h2>
-        <div class="content" style="font-size: 125%;">
+        <h2 class="title is-3 section-title has-text-centered reveal">Datasets</h2>
+        <div class="content reveal" style="font-size: 125%;">
           <p>
             We collected custom datasets using a sensor payload with LiDAR, IMU, GNSS, and RGB images.
             Environments include bike trails, hike trails, urban parks, and forests.
             Requests for access can be sent to your project email.
           </p>
+
+
 
           <!-- <div class="columns is-multiline is-mobile" style="margin-top: .75rem;">
             <div class="column is-half"><b>Gascola</b><br><span class="muted">Mixed canopy, varied understory</span></div>
@@ -291,37 +311,37 @@
           </div> -->
 
           <div class="columns is-multiline is-mobile" style="margin-top: 1rem;">
-            <div class="column is-one-third">
+            <div class="column is-one-third reveal" data-delay="0">
               <figure class="image">
                 <img src="assets/images/gascola.png" alt="Gascola" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Gascola</p>
               </figure>
             </div>
-            <div class="column is-one-third">
+            <div class="column is-one-third reveal" data-delay="150">
               <figure class="image">
                 <img src="assets/images/trail.png" alt="Bike Trail" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Bike Trail</p>
               </figure>
             </div>
-            <div class="column is-one-third">
+            <div class="column is-one-third reveal" data-delay="300">
               <figure class="image">
                 <img src="assets/images/flagstaff.png" alt="Flagstaff" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Flagstaff</p>
               </figure>
             </div>
-            <div class="column is-one-third">
+            <div class="column is-one-third reveal" data-delay="450">
               <figure class="image">
                 <img src="assets/images/frickpark.png" alt="Frick Park" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Frick Park</p>
               </figure>
             </div>
-            <div class="column is-one-third">
+            <div class="column is-one-third reveal" data-delay="600">
               <figure class="image">
                 <img src="assets/images/campus.png" alt="Campus" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Campus</p>
               </figure>
             </div>
-            <div class="column is-one-third">
+            <div class="column is-one-third reveal" data-delay="750">
               <figure class="image">
                 <img src="assets/images/chatam.png" alt="Chatham" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
                 <p class="muted has-text-centered" style="margin-top: .35rem;">Chatham</p>
@@ -343,8 +363,8 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column">
-        <h2 class="title is-3 section-title has-text-centered">Map Merging</h2>
-        <div class="content" style="font-size: 125%;">
+        <h2 class="title is-3 section-title has-text-centered reveal">Extension: Map Merging</h2>
+        <div class="content reveal" style="font-size: 125%;">
           <p>
             Under-canopy mapping and above-canopy mapping each capture only part of the forest structure. We merge both
             views to recover a comprehensive, multi-scale reconstruction that supports consistent geolocation and
@@ -358,13 +378,13 @@
           </ul>
 
           <div class="columns is-mobile" style="margin-top: 1rem;">
-            <div class="column">
+            <div class="column reveal" data-delay="0">
               <img src="assets/images/flagstaff_ucm.png" alt="Under-canopy map" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
             </div>
-            <div class="column">
+            <div class="column reveal" data-delay="200">
               <img src="assets/images/flagstaff_acm.png" alt="Above-canopy map" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
             </div>
-            <div class="column">
+            <div class="column reveal" data-delay="400">
               <img src="assets/images/flagstaff_acm_ucm.jpg" alt="Merged reconstruction" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px;">
             </div>
           </div>

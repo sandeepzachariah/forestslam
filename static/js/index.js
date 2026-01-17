@@ -39,23 +39,25 @@ $(document).ready(function() {
     }
 
 		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
+    if (window.bulmaCarousel) {
+      var carousels = bulmaCarousel.attach('.carousel', options);
 
-    // Loop on each carousel initialized
-    for(var i = 0; i < carousels.length; i++) {
-    	// Add listener to  event
-    	carousels[i].on('before:show', state => {
-    		console.log(state);
-    	});
-    }
+      // Loop on each carousel initialized
+      for (var i = 0; i < carousels.length; i++) {
+        // Add listener to  event
+        carousels[i].on('before:show', state => {
+          console.log(state);
+        });
+      }
 
-    // Access to bulmaCarousel instance of an element
-    var element = document.querySelector('#my-element');
-    if (element && element.bulmaCarousel) {
-    	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
+      // Access to bulmaCarousel instance of an element
+      var element = document.querySelector('#my-element');
+      if (element && element.bulmaCarousel) {
+        // bulmaCarousel instance is available as element.bulmaCarousel
+        element.bulmaCarousel.on('before-show', function(state) {
+          console.log(state);
+        });
+      }
     }
 
     preloadInterpolationImages();
@@ -68,7 +70,45 @@ $(document).ready(function() {
 
     bulmaSlider.attach();
 
-    document.getElementById("single-task-result-video").playbackRate = 2.0;
-    document.getElementById("multi-task-result-video").playbackRate = 2.0;
-})
+    var singleTaskVideo = document.getElementById("single-task-result-video");
+    if (singleTaskVideo) {
+      singleTaskVideo.playbackRate = 2.0;
+    }
+    var multiTaskVideo = document.getElementById("multi-task-result-video");
+    if (multiTaskVideo) {
+      multiTaskVideo.playbackRate = 2.0;
+    }
 
+    function initScrollReveal() {
+      var elements = document.querySelectorAll('.reveal');
+      if (!elements.length) {
+        return;
+      }
+      if (!('IntersectionObserver' in window)) {
+        elements.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries, obs) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          var el = entry.target;
+          if (el.dataset.delay) {
+            el.style.transitionDelay = el.dataset.delay + 'ms';
+          }
+          el.classList.add('is-visible');
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+      elements.forEach(function(el) {
+        observer.observe(el);
+      });
+    }
+
+    initScrollReveal();
+})
